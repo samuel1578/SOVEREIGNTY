@@ -2,7 +2,7 @@ import type {Metadata,Viewport} from 'next'
 import {Fraunces,Jost} from 'next/font/google'
 import {Shell} from '@/components/shell'
 import {text,brand} from '@/lib/editorial'
-import {SITE_URL} from '@/lib/config'
+import {SITE_URL,REVIEW} from '@/lib/config'
 import {DEFAULT_IMAGE} from '@/lib/seo'
 import {getSiteSettings} from '@/lib/services/public'
 import './globals.css'
@@ -20,6 +20,8 @@ export async function generateMetadata():Promise<Metadata>{
     metadataBase:new URL(SITE_URL),
     title,description,applicationName:brand,
     icons:{icon:'/brand/rts-favicon-512.png',apple:'/brand/rts-favicon-512.png'},
+    // Review builds (preview links with mock data) are never indexed.
+    ...(REVIEW?{robots:{index:false,follow:false}}:{}),
     openGraph:{siteName:brand,locale:'en_GB',type:'website',title,description,images:[DEFAULT_IMAGE]},
     twitter:{card:'summary_large_image',title,description,images:[DEFAULT_IMAGE.url]},
   }
