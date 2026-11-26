@@ -3,7 +3,7 @@ import {createContext,useContext,useEffect,useRef,useState,Suspense,type ReactNo
 import Link from 'next/link'
 import Image from 'next/image'
 import {usePathname,useRouter} from 'next/navigation'
-import {ChevronDown,Menu,UserRound,SlidersHorizontal,Sun,Moon} from 'lucide-react'
+import {ChevronDown,Menu,UserRound,SlidersHorizontal,Sun,Moon,BookOpen} from 'lucide-react'
 import {brand,nav,legal,text} from '@/lib/editorial'
 import {ScrollReset} from './scroll-reset'
 import {REVIEW} from '@/lib/config'
@@ -16,7 +16,7 @@ import {PlayerProvider} from './player'
 import {HamburgerMenu} from './menu/hamburger-menu'
 
 const RoleContext=createContext<Identity>('visitor');export const useRole=()=>useContext(RoleContext)
-const roles:Record<ReviewIdentity,string>={visitor:'Visitor',member:'Member (owns Tier 1)',empty:'Member (no tiers)',assistant:'Assistant',owner:'Owner'}
+export const roles:Record<ReviewIdentity,string>={visitor:'Visitor',member:'Member (owns Tier 1)',empty:'Member (no tiers)',assistant:'Assistant',owner:'Owner'}
 
 // D5 — theme. The inline script in app/layout.tsx applies the stored choice before paint; this keeps it live.
 function useTheme(){
@@ -35,7 +35,7 @@ const Logo=({className='',priority=false}:{className?:string;priority?:boolean})
 
 type RoleProps={role:Identity}
 /** Switches the mock identity on the server (D4/D6), then refreshes client state and routes sensibly. */
-function useChangeRole({path}:{path:string}){
+export function useChangeRole({path}:{path:string}){
   const router=useRouter()
   return async(r:Identity)=>{
     await switchIdentity(r)
@@ -49,7 +49,9 @@ function useChangeRole({path}:{path:string}){
 // usePathname() is runtime data on dynamic routes; Cache Components needs it inside <Suspense>.
 // Static routes prerender the real header; dynamic ones stream it in after a path-less fallback.
 function PathHeader(props:RoleProps&{dark:boolean;choose:(t:Theme)=>void}){const path=usePathname();return <Header {...props} path={path}/>}
-function PathReview(props:RoleProps){const path=usePathname();return <Review {...props} path={path}/>}
+function PathReview(props:RoleProps){const path=usePathname();return <><Review {...props} path={path}/>{path!=='/guide'&&<GuideFab/>}</>}
+/** Review only: floating shortcut to the one-page preview guide (/guide). */
+const GuideFab=()=><Link href="/guide" target="_blank" rel="noopener" className="guide-fab" aria-label="Open the preview guide (opens in a new tab)" title="Preview guide"><BookOpen size={18} aria-hidden/><span>Preview guide</span></Link>
 
 export function Shell({children}:{children:ReactNode}){
   const {theme,dark,choose}=useTheme(),role=useIdentity()

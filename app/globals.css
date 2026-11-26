@@ -225,7 +225,7 @@ body:has(.mini) .savebar{bottom:70px}
 .size-option .aa{font-family:var(--display),Georgia,serif;line-height:1;min-width:2.2ch}
 .size-standard{font-size:17px}.size-standard .aa{font-size:28px}.size-large{font-size:20px}.size-large .aa{font-size:34px}.size-xlarge{font-size:23px}.size-xlarge .aa{font-size:40px}
 .size-sample{color:var(--ink-muted)}
-.compact-mark{display:none}.admin-main .panel input[type=file]{width:100%}hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+html .brand .compact-mark{display:none}.admin-main .panel input[type=file]{width:100%}hr{border:0;border-top:1px solid var(--line);margin:32px 0}
 /* Lesson player layout (M02) and bottom sheet (F-026) */
 .learn-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:32px;align-items:start}
 .sheet{padding:20px 24px}.sheet summary{list-style:none;padding:0;cursor:default}.sheet summary::-webkit-details-marker{display:none}.sheet summary h3{margin:0 0 8px}
@@ -820,3 +820,40 @@ body:has(.mini) .buy-bar{bottom:68px}
   .philosophy .read-layout aside{position:static}
 }
 @media(max-width:767px){.end-cta{grid-template-columns:1fr}.end-cta-img{min-height:180px}.coach-details{grid-template-columns:1fr;margin-top:-28px}}
+
+/* Review only (D4): floating preview-guide button and the /guide page. */
+.guide-fab{position:fixed;right:14px;bottom:10px;z-index:40;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 16px 8px 13px;border-radius:999px;background:var(--blue);color:var(--on-blue);font-size:14px;font-weight:500;box-shadow:var(--shadow);transition:background-color .2s ease-out,transform .2s ease-out}
+.guide-fab:hover{background:var(--blue-hover);transform:translateY(-1px)}
+body:has(.mini) .guide-fab,body:has(.buy-bar) .guide-fab{bottom:85px}body:has(.buy-bar) .review{bottom:85px}
+@media (max-width:600px){.guide-fab{padding:0;width:48px;height:48px;justify-content:center}.guide-fab span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
+@media (prefers-reduced-motion:reduce){.guide-fab,.guide-fab:hover{transition:none;transform:none}}
+.guide{padding-bottom:40px}
+.guide-hero{background:var(--surface);border-bottom:1px solid var(--line);padding:clamp(56px,9vw,120px) 0 clamp(36px,5vw,60px)}
+.guide-hero h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,5vw,60px);line-height:1.08;max-width:20ch;margin:0 0 20px;color:var(--ink)}
+.guide-lede{font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:var(--ink-muted);max-width:62ch;margin:0}
+.guide-toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.guide-toc a{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:8px 16px;font-size:14px;color:var(--ink);min-height:40px;display:inline-flex;align-items:center}.guide-toc a:hover{border-color:var(--clay)}
+.guide-section{padding-block:clamp(44px,6vw,80px);scroll-margin-top:90px}
+.guide-section h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,3vw,38px);margin:0 0 16px;color:var(--ink)}
+.guide-section>p,.guide-section>div>p{max-width:68ch;line-height:1.65;color:var(--ink-muted)}.guide-section b{color:var(--ink);font-weight:500}
+.guide-steps{display:grid;gap:12px;padding-left:22px;max-width:68ch;line-height:1.65;color:var(--ink-muted)}
+.guide-chip{display:inline-flex;align-items:center;gap:5px;vertical-align:middle;background:#1C211F;color:#F1F0E8;border-radius:20px;padding:2px 9px;font-size:11px}
+.guide-modes{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:18px;margin-top:26px}
+.guide-mode{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;padding:26px;background:var(--bg);scroll-margin-top:90px}
+.guide-mode h3{font-family:var(--display);font-weight:400;font-size:24px;margin:6px 0 10px;color:var(--ink)}
+.guide-mode>p{color:var(--ink-muted);line-height:1.6;margin:0 0 16px}
+.guide-mode h4{font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.18em;color:var(--clay-text);margin:14px 0 8px}
+.guide-mode ul{margin:0;padding-left:18px;display:grid;gap:6px;line-height:1.55;color:var(--ink)}
+.guide-links a{color:var(--link);text-decoration:underline;text-underline-offset:3px}
+.guide-num{font-size:12px;letter-spacing:.2em;color:var(--clay-text);font-weight:500}
+.guide-try{margin-top:auto;padding-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.guide-current{display:inline-flex;align-items:center;gap:6px;color:var(--success);font-size:14px}
+.guide-note{font-size:15px;margin-top:22px}
+.guide-band{background:var(--surface);border-block:1px solid var(--line)}
+.guide-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px;margin:24px 0 0}
+.guide-facts div{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:20px}
+.guide-facts dt{font-weight:500;color:var(--ink);margin-bottom:6px}.guide-facts dd{margin:0;color:var(--ink-muted);line-height:1.55}
+.guide-plan{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:0;max-width:760px}
+.guide-plan li{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line)}.guide-plan li:last-child{border-bottom:1px solid var(--line)}
+.guide-plan .guide-num{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--clay);letter-spacing:0;font-size:14px}
+.guide-plan p{margin:4px 0 0;color:var(--ink-muted);line-height:1.55}
+.guide-needs{display:grid;gap:10px;padding-left:20px;max-width:70ch;line-height:1.6;color:var(--ink);margin:20px 0 24px}
